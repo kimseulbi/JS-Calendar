@@ -1,4 +1,4 @@
-# buzzni-calendar
+# JS-Calendar
 
 ## npm 명령
 
