@@ -1,0 +1,23 @@
+{
+  "name": "buzzni-calendar",
+  "version": "1.0.0",
+  "description": "buzzni-calendar",
+  "scripts": {
+    "start": "parcel src/index.html --open",
+    "build": "rimraf dist && parcel build src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "axios": "^0.18.0",
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.10.3",
+    "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2"
+  }
+}
