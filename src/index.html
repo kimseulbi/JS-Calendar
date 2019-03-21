@@ -5,12 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>버즈니캘린더</title>
-    <link rel="stylesheet" href="./index.scss" />
+    <link rel="stylesheet" href="../src/scss/index.scss" />
   </head>
-  <body>
-    <!-- 템플릿을 이곳에 작성해주세요 -->
 
-    <div class="root"></div>
-    <script src="./index.js"></script>
+  <body>
+    <!-- wrap -->
+    <div class="wrap">
+      <header class="header">
+        <div class="toolbar">
+          <div class="toolber__center">
+            <div class="btn-group">
+              <h4 class="readable-hidden">캘린더 뷰 타입 선택</h4>
+              <button type="button" class="btn-day">일간</button>
+              <button type="button" class="btn-week">주간</button>
+              <button type="button" class="btn-month">월간</button>
+            </div>
+          </div>
+          <div class="toolber__right">
+            <button class="btn-addSchedule">일정추가</button>
+          </div>
+        </div>
+      </header>
+      <div class="container"></div>
+      <footer class="footer">
+        <small class="copyright">
+          Copyright since &copy; 2019 by Seulbi Kim.
+        </small>
+      </footer>
+    </div>
+
+    <!-- monthPage -->
+    <template id="month">
+      <div class="month">
+            <div class="toolbar__left">
+              <h3 class="monthAndYear"></h3>
+              <div class="btn-group">
+                <button type="button" class="btn-prev">
+                  이전
+                </button>
+                <button type="button" class="btn-next">
+                  다음
+                </button>
+                <button type="button" class="btn-resetDay">오늘</button>
+              </div>
+            </div>
+        </header>
+        <div class="container__area">
+          <table id="calendar" class="calendar">
+            <thead class="head">
+              <tr>
+                <th class="head__day">
+                  <span class="txt-sun">일</span>
+                </th>
+                <th class="head__day"><span>월</span></th>
+                <th class="head__day"><span>화</span></th>
+                <th class="head__day"><span>수</span></th>
+                <th class="head__day"><span>목</span></th>
+                <th class="head__day"><span>금</span></th>
+                <th class="head__day">
+                  <span class="txt-sat">토</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="calendar-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </template>
+
+    <!-- weekPage -->
+    <template id="week">
+      <div class="week">
+        주간캘린더
+      </div>
+    </template>
+
+    <!-- dayPage -->
+    <template id="day">
+      <div>
+        일간캘린더
+      </div>
+    </template>
+
+    <script type="text/javascript" src="./index.js"></script>
   </body>
 </html>

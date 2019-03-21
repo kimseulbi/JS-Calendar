@@ -1,0 +1,16 @@
+.header {
+  font-size: 1.6rem;
+  width: 800px;
+  height: 50px;
+  padding: 1rem 0;
+  margin: 0 auto;
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .toolber__right {
+    position: absolute;
+    right: 0;
+  }
+}
