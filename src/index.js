@@ -40,12 +40,12 @@ weekPageEl.addEventListener("click", e => {
 });
 monthPageEl.addEventListener("click", e => {
   e.preventDefault();
-  drawMonthPage();
+  drawMonthPage(currentMonth, currentYear);
 });
 
 // 인덱스페이지
 async function drawindexPage() {
-  drawMonthPage();
+  drawMonthPage(currentMonth, currentYear);
 }
 
 // 월간달력페이지
@@ -55,7 +55,11 @@ async function drawMonthPage(month, year) {
   const monthAndYearEl = frag.querySelector(".monthAndYear");
   const nextEl = frag.querySelector(".btn-next");
   const prevEl = frag.querySelector(".btn-prev");
+  const resetDayEl = frag.querySelector(".btn-resetDay");
   const tbl = frag.querySelector(".calendar-body");
+
+  let firstDay = new Date(year, month).getDay();
+  let daysInMonth = 32 - new Date(year, month, 32).getDate();
 
   nextEl.addEventListener("click", e => {
     e.preventDefault();
@@ -71,12 +75,12 @@ async function drawMonthPage(month, year) {
     drawMonthPage(currentMonth, currentYear);
   });
 
-  let firstDay = new Date(year, month).getDay();
-  console.log("firstDay", firstDay);
-
-  console.log("sun", currentDay);
-
-  let daysInMonth = 32 - new Date(year, month, 32).getDate();
+  resetDayEl.addEventListener("click", e => {
+    e.preventDefault();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    drawMonthPage(currentMonth, currentYear);
+  });
 
   monthAndYearEl.innerHTML = `${year}.${months[month]}`;
 
@@ -104,9 +108,6 @@ async function drawMonthPage(month, year) {
         ) {
           cell.classList.add("bg__today");
         }
-        // if ( === 0) {
-        //   cell.classList.add("bg__red");
-        // }
         cell.appendChild(cellText);
         row.appendChild(cell);
         date++;
@@ -132,6 +133,7 @@ async function drawDayPage() {
   rootEl.textContent = "";
   rootEl.appendChild(frag);
 }
+
 drawindexPage();
 
 // 페이지 그리는 함수 작성 순서

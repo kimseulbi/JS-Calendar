@@ -37,19 +37,18 @@
     <!-- monthPage -->
     <template id="month">
       <div class="month">
-            <div class="toolbar__left">
-              <h3 class="monthAndYear"></h3>
-              <div class="btn-group">
-                <button type="button" class="btn-prev">
-                  이전
-                </button>
-                <button type="button" class="btn-next">
-                  다음
-                </button>
-                <button type="button" class="btn-resetDay">오늘</button>
-              </div>
-            </div>
-        </header>
+        <div class="toolbar__left">
+          <h3 class="monthAndYear"></h3>
+          <div class="btn-group">
+            <button type="button" class="btn-prev">
+              이전
+            </button>
+            <button type="button" class="btn-next">
+              다음
+            </button>
+            <button type="button" class="btn-resetDay">오늘</button>
+          </div>
+        </div>
         <div class="container__area">
           <table id="calendar" class="calendar">
             <thead class="head">
@@ -76,7 +75,18 @@
     <!-- weekPage -->
     <template id="week">
       <div class="week">
-        주간캘린더
+        <div class="toolbar__left">
+          <h3 class="monthAndWeek"></h3>
+          <div class="btn-group">
+            <button type="button" class="btn-prev">
+              이전
+            </button>
+            <button type="button" class="btn-next">
+              다음
+            </button>
+            <button type="button" class="btn-resetDay">오늘</button>
+          </div>
+        </div>
       </div>
     </template>
 
