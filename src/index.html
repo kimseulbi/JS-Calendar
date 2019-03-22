@@ -26,6 +26,40 @@
           </div>
         </div>
       </header>
+      <section class="addSchedule__modal">
+        <div class="modal-content">
+          <h2 class="modal-heading">
+            일정추가
+          </h2>
+          <button type="butoon" class="btn-close">닫기</button>
+          <form class="modal-form">
+            <fieldset>
+              <legend>일정 추가 폼</legend>
+              <div class="schedule-tit">
+                <label for="schedule-tit">제목</label>
+                <input
+                  type="text"
+                  id="schedule-tit"
+                  placeholder="제목을 입력하세요"
+                />
+              </div>
+              <div class="schedule-startDate">
+                <label for="schedule-tit">시작일시</label>
+                <input type="datetime-local" id="schedule-tit" />
+              </div>
+              <div class="schedule-lastDate">
+                <label for="schedule-tit">종료일시</label>
+                <input type="datetime-local" id="schedule-tit" />
+              </div>
+              <div class="schedule-memo">
+                <label for="schedule-tit">메모</label>
+                <textarea rows="10" cols="50"> </textarea>
+              </div>
+              <button class="btn-save">저장</button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
       <div class="container"></div>
       <footer class="footer">
         <small class="copyright">
@@ -86,6 +120,29 @@
             </button>
             <button type="button" class="btn-resetDay">오늘</button>
           </div>
+        </div>
+        <div class="container__area">
+          <table id="calendar" class="calendar">
+            <thead class="head">
+              <tr>
+                <th class="head__day">
+                  <span></span>
+                </th>
+                <th class="head__day">
+                  <span class="txt-sun">일</span>
+                </th>
+                <th class="head__day"><span>월</span></th>
+                <th class="head__day"><span>화</span></th>
+                <th class="head__day"><span>수</span></th>
+                <th class="head__day"><span>목</span></th>
+                <th class="head__day"><span>금</span></th>
+                <th class="head__day">
+                  <span class="txt-sat">토</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="calendar-body"></tbody>
+          </table>
         </div>
       </div>
     </template>

@@ -10,11 +10,15 @@ const rootEl = document.querySelector(".container");
 const dayPageEl = document.querySelector(".btn-day");
 const weekPageEl = document.querySelector(".btn-week");
 const monthPageEl = document.querySelector(".btn-month");
+const addScheduleEl = document.querySelector(".btn-addSchedule");
+const modalEl = document.querySelector(".addSchedule__modal");
+const clostEl = document.querySelector(".btn-close");
 
 let today = new Date();
-let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
+let currentMonth = today.getMonth();
 let currentDay = today.getDay();
+let currentHours = today.getHours();
 let months = [
   "01",
   "02",
@@ -30,18 +34,35 @@ let months = [
   "12"
 ];
 
+console.log("currentDay", currentDay);
+
 // 카테고리 작업
 dayPageEl.addEventListener("click", e => {
   e.preventDefault();
 });
 weekPageEl.addEventListener("click", e => {
   e.preventDefault();
-  drawWeekPage();
+  drawWeekPage(currentDay, currentMonth, currentYear);
 });
 monthPageEl.addEventListener("click", e => {
   e.preventDefault();
   drawMonthPage(currentMonth, currentYear);
 });
+
+// 모달
+addScheduleEl.addEventListener("click", e => {
+  e.preventDefault();
+  modalEl.style.display = "block";
+});
+clostEl.addEventListener("click", e => {
+  e.preventDefault();
+  modalEl.style.display = "none";
+});
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
 
 // 인덱스페이지
 async function drawindexPage() {
@@ -60,6 +81,8 @@ async function drawMonthPage(month, year) {
 
   let firstDay = new Date(year, month).getDay();
   let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+  console.log("daysInMonth", "firstDay", daysInMonth, firstDay);
 
   nextEl.addEventListener("click", e => {
     e.preventDefault();
@@ -82,8 +105,7 @@ async function drawMonthPage(month, year) {
     drawMonthPage(currentMonth, currentYear);
   });
 
-  monthAndYearEl.innerHTML = `${year}.${months[month]}`;
-
+  monthAndYearEl.innerHTML = `${year}년 ${months[month]}월 `;
   tbl.textContent = "";
 
   let date = 1;
@@ -121,8 +143,70 @@ async function drawMonthPage(month, year) {
 }
 
 // 주간달력페이지
-async function drawWeekPage() {
+async function drawWeekPage(day, month, year) {
   const frag = document.importNode(templates.week, true);
+
+  const monthAndWeekEl = frag.querySelector(".monthAndWeek");
+  const nextEl = frag.querySelector(".btn-next");
+  const prevEl = frag.querySelector(".btn-prev");
+  const resetDayEl = frag.querySelector(".btn-resetDay");
+  const tbl = frag.querySelector(".calendar-body");
+
+  // let firstDay = new Date(year, month).getDay();
+  // let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+  nextEl.addEventListener("click", e => {
+    e.preventDefault();
+    currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+
+    console.log("currentMonth", currentMonth);
+    console.log("currentYear", currentYear);
+    drawWeekPage(currentDay, currentMonth, currentYear);
+  });
+
+  prevEl.addEventListener("click", e => {
+    e.preventDefault();
+    currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+    drawWeekPage(currentMonth, currentYear);
+  });
+
+  resetDayEl.addEventListener("click", e => {
+    e.preventDefault();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    drawWeekPage(currentMonth, currentYear);
+  });
+
+  monthAndWeekEl.innerHTML = `${year}년 ${months[month]}월 `;
+  tbl.textContent = "";
+
+  let date = 1;
+  for (let i = 0; i < 24; i++) {
+    let row = document.createElement("tr");
+    let append = "";
+    for (let j = 0; j < 8; j++) {
+      if (j === 0) {
+        if (date > 11 && date <= 23) {
+          append = "PM";
+        } else {
+          append = "AM";
+        }
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode(`${append} ${date}시`);
+        date++;
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else {
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode("");
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      }
+    }
+    tbl.appendChild(row);
+  }
   rootEl.textContent = "";
   rootEl.appendChild(frag);
 }

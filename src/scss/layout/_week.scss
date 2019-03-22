@@ -1,0 +1,40 @@
+.week {
+  margin: 0 auto;
+  .bg__today {
+    background: $brand-point;
+  }
+  .container__area {
+    width: 800px;
+    .calendar {
+      width: 100%;
+      .head {
+        background: #f4f4f4;
+        .head__day {
+          padding: 1rem;
+          text-align: left;
+          .txt-sun {
+            color: #ce0b24;
+          }
+          .txt-sat {
+            color: #4f93df;
+          }
+        }
+      }
+      .calendar-body {
+        th,
+        td {
+          border: 1px solid #f4f4f4;
+        }
+        tr {
+          height: 30px;
+        }
+        td {
+          padding: 1rem;
+          &:nth-child(1) {
+            width: 10%;
+          }
+        }
+      }
+    }
+  }
+}
