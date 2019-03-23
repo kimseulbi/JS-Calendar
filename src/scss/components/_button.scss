@@ -1,10 +1,51 @@
 .toolbar__left {
   position: absolute;
-  top: 1.4rem;
+  top: 1rem;
   h3 {
     display: inline-block;
+    font-size: 1.6rem;
+    margin-right: 1rem;
   }
   .btn-group {
     display: inline-block;
+  }
+}
+
+// 기본 버튼 스타일
+button {
+  height: 2.8rem;
+  background-color: transparent;
+  font-size: 1.4rem;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+// 저장 버튼
+.btn-save {
+  width: 100%;
+  height: 4rem;
+  background-color: $brand-point;
+  border: 0;
+}
+
+// 모달 닫기 버튼
+.btn-close {
+  border: 0;
+  background: transparent
+    url(https://res.cloudinary.com/https-seulbikim-netlify-com/image/upload/v1553332844/Viewee/images/close.png)
+    no-repeat;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  text-indent: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 18px;
+  height: 18px;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    cursor: pointer;
   }
 }
