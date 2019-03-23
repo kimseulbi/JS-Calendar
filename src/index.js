@@ -59,8 +59,8 @@ clostEl.addEventListener("click", e => {
   modalEl.style.display = "none";
 });
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modalEl) {
+    modalEl.style.display = "none";
   }
 };
 
@@ -150,10 +150,11 @@ async function drawWeekPage(day, month, year) {
   const nextEl = frag.querySelector(".btn-next");
   const prevEl = frag.querySelector(".btn-prev");
   const resetDayEl = frag.querySelector(".btn-resetDay");
+  const headEl = frag.querySelector(".head");
   const tbl = frag.querySelector(".calendar-body");
 
-  // let firstDay = new Date(year, month).getDay();
-  // let daysInMonth = 32 - new Date(year, month, 32).getDate();
+  let firstDay = new Date(year, month).getDay();
+  let daysInMonth = 32 - new Date(year, month, 32).getDate();
 
   nextEl.addEventListener("click", e => {
     e.preventDefault();
@@ -179,23 +180,25 @@ async function drawWeekPage(day, month, year) {
     drawWeekPage(currentMonth, currentYear);
   });
 
-  monthAndWeekEl.innerHTML = `${year}년 ${months[month]}월 `;
+  monthAndWeekEl.innerHTML = `${months[month]}월 `;
   tbl.textContent = "";
 
-  let date = 1;
+  let hoursDate = 1;
+  let dayDate = 1;
+  let append = "";
+
   for (let i = 0; i < 24; i++) {
     let row = document.createElement("tr");
-    let append = "";
     for (let j = 0; j < 8; j++) {
       if (j === 0) {
-        if (date > 11 && date <= 23) {
+        if (hoursDate > 11 && hoursDate <= 23) {
           append = "PM";
         } else {
           append = "AM";
         }
         let cell = document.createElement("td");
-        let cellText = document.createTextNode(`${append} ${date}시`);
-        date++;
+        let cellText = document.createTextNode(`${append} ${hoursDate}시`);
+        hoursDate++;
         cell.appendChild(cellText);
         row.appendChild(cell);
       } else {
